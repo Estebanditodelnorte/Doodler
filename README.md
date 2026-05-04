@@ -33,12 +33,17 @@ La version recommandee ici est:
 
 1. Creez un projet Supabase gratuit.
 2. Executez `supabase-schema.sql` dans l'editeur SQL.
-3. Copiez `config.example.js` en `config.js`.
-4. Remplacez les cles par celles de votre projet Supabase.
+3. Editez `config.js`.
+4. Remplacez les valeurs Supabase par celles de votre projet.
 5. Laissez `accessCode: ""` si vous ne voulez aucune protection.
-6. Deployez le site avec `config.js` present.
+6. Deployez le site.
 
-Le site essaiera automatiquement d'utiliser Supabase si `config.js` existe.
+Le site utilise automatiquement Supabase si `config.js` contient:
+
+- `supabaseUrl`
+- `supabaseAnonKey`
+- `tableName`
+
 Sinon, il restera en mode simple sans partage live.
 
 ## Structure
@@ -89,8 +94,10 @@ Sinon, c'est un filtre leger pour limiter le partage large.
 Si vous poussez ce projet sur GitHub:
 
 1. changez `accessCode` avant publication si la valeur a deja ete partagee;
-2. gardez `config.js` hors du depot;
+2. vous pouvez committer `config.js` avec la cle `anon` Supabase;
 3. n'utilisez jamais une cle `service_role` Supabase dans le front-end.
+
+La cle `anon` Supabase est faite pour le client public. La securite repose sur les politiques `RLS`.
 
 ## Changer les dates
 
