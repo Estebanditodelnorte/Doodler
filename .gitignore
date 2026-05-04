@@ -1,0 +1,9 @@
+# Local runtime config
+config.js
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+

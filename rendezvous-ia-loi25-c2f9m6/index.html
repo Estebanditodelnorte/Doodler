@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rencontre IA et Loi 25</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="card hero">
+        <p class="eyebrow">Invitation restreinte</p>
+        <h1>Rencontre IA, usages concrets et repères en lien avec la Loi 25</h1>
+        <p class="lede">
+          Cette page sert a proposer quelques dates de rencontre aux directions generales.
+          Une DG peut aussi partager ce lien avec une personne ressource ou une personne substitut si necessaire.
+        </p>
+      </section>
+
+      <section class="layout" style="margin-top: 1.25rem;">
+        <div class="card pane">
+          <div class="gate" data-gate>
+            <h2>Code d'acces</h2>
+            <p class="small">
+              Entrez le code transmis dans le courriel d'invitation.
+            </p>
+            <form data-gate-form>
+              <div class="field">
+                <label for="access_code">Code</label>
+                <input id="access_code" name="access_code" type="password" autocomplete="off" required />
+              </div>
+              <div class="footer-line">
+                <button type="submit">Debloquer le sondage</button>
+              </div>
+            </form>
+            <div class="warning hidden" data-gate-message></div>
+          </div>
+
+          <div class="hidden" data-poll>
+            <h2>Vos disponibilites</h2>
+            <p class="small">
+              Merci d'indiquer votre niveau de disponibilite pour chaque option. Vous pouvez choisir plusieurs dates comme dans Doodle. La date du 4 juin 2026 n'est pas proposee.
+            </p>
+
+            <form
+              name="ia-loi25-dates"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              action="/thanks/"
+            >
+              <input type="hidden" name="form-name" value="ia-loi25-dates" />
+              <input type="hidden" name="bot-field" />
+
+              <div class="fields">
+                <div class="field">
+                  <label for="name">Nom</label>
+                  <input id="name" name="name" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="organization">Organisation</label>
+                  <input id="organization" name="organization" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="role">Role</label>
+                  <select id="role" name="role" required>
+                    <option value="">Choisir</option>
+                    <option>Direction generale</option>
+                    <option>Personne ressource</option>
+                    <option>Personne substitut</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="email">Courriel</label>
+                  <input id="email" name="email" type="email" />
+                </div>
+                <div class="field full">
+                  <label for="shared_by">Si vous repondez a la place d'une DG ou a sa demande</label>
+                  <input id="shared_by" name="shared_by" type="text" placeholder="Ex. Transmis par la DG de..." />
+                </div>
+              </div>
+
+              <table class="poll-table" aria-label="Choix de dates">
+                <thead>
+                  <tr>
+                    <th>Option</th>
+                    <th>Votre disponibilite</th>
+                  </tr>
+                </thead>
+                <tbody data-date-rows></tbody>
+              </table>
+
+              <div class="fields">
+                <div class="field full">
+                  <label for="comments">Commentaires</label>
+                  <textarea id="comments" name="comments" placeholder="Ex. preferer avant-midi, envoyer le lien Teams a telle personne, etc."></textarea>
+                </div>
+              </div>
+
+              <div class="footer-line">
+                <button type="submit" data-submit-button>Envoyer mes disponibilites</button>
+                <a class="button secondary" href="mailto:?subject=Invitation%20-%20rencontre%20IA%20et%20Loi%2025&body=Je%20te%20transmets%20le%20lien%20de%20sondage%20si%20tu%20dois%20repondre%20pour%20moi%20ou%20m'accompagner.">Transmettre a une personne substitut</a>
+              </div>
+            </form>
+            <div class="notice hidden" data-form-message></div>
+          </div>
+        </div>
+
+        <aside class="card pane stack">
+          <div class="notice">
+            <h3>But de la rencontre</h3>
+            <p class="small">
+              Presenter un premier outil sur les benefices de l'IA, ouvrir la discussion sur les usages dans nos milieux et aborder les reperes de prudence en lien avec la Loi 25.
+            </p>
+          </div>
+
+          <div class="stack hidden" data-poll>
+            <div>
+              <p class="eyebrow">Votre resume</p>
+              <div class="summary-grid">
+                <div class="metric">
+                  <span class="small">Disponible</span>
+                  <strong data-count-available>0</strong>
+                </div>
+                <div class="metric">
+                  <span class="small">Possible</span>
+                  <strong data-count-maybe>0</strong>
+                </div>
+                <div class="metric">
+                  <span class="small">Indisponible</span>
+                  <strong data-count-no>0</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="notice">
+              <h3>Reponses du groupe</h3>
+              <p class="small" data-live-status>
+                Le mode partage en direct n'est pas encore configure.
+              </p>
+              <div data-live-results></div>
+            </div>
+
+            <div class="notice hidden" data-live-participants-wrap>
+              <h3>Personnes ayant repondu</h3>
+              <div data-live-participants class="small"></div>
+            </div>
+
+            <div class="warning">
+              <h3>Confidentialite pratique</h3>
+              <p class="small">
+                Ce mini-outil est volontairement simple. Pour plus de discretion, gardez le lien au sein du petit cercle d'invitation.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="/config.js"></script>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

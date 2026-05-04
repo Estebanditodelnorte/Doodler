@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aggregation des reponses</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell shell-narrow">
+      <section class="card hero">
+        <p class="eyebrow">Vue admin locale</p>
+        <h1>Aggregation rapide des disponibilites</h1>
+        <p class="lede">
+          Exportez vos soumissions Netlify en CSV, puis collez le contenu ici pour obtenir un resume par date.
+        </p>
+      </section>
+
+      <section class="card pane" style="margin-top: 1.25rem;">
+        <form data-admin-form class="stack">
+          <div class="field full">
+            <label for="csv_blob">CSV des reponses</label>
+            <textarea id="csv_blob" placeholder="Collez ici le CSV exporte depuis Netlify Forms"></textarea>
+          </div>
+          <div class="footer-line">
+            <button type="submit">Calculer l'agregation</button>
+          </div>
+          <div class="notice" data-admin-message>
+            Aucune donnee chargee.
+          </div>
+        </form>
+      </section>
+
+      <section class="card pane stack" style="margin-top: 1.25rem;">
+        <div class="metric">
+          <span class="small">Nombre de reponses chargees</span>
+          <strong data-submission-count>0</strong>
+        </div>
+        <div data-admin-results></div>
+      </section>
+    </main>
+
+    <script src="/admin.js"></script>
+  </body>
+</html>

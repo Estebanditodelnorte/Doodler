@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/poll"
+  to = "/rendezvous-ia-loi25-c2f9m6/"
+  status = 302
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin-revue-k7d3p1/"
+  status = 302
