@@ -35,7 +35,8 @@ La version recommandee ici est:
 2. Executez `supabase-schema.sql` dans l'editeur SQL.
 3. Copiez `config.example.js` en `config.js`.
 4. Remplacez les cles par celles de votre projet Supabase.
-5. Deployez le site avec `config.js` present.
+5. Laissez `accessCode: ""` si vous ne voulez aucune protection.
+6. Deployez le site avec `config.js` present.
 
 Le site essaiera automatiquement d'utiliser Supabase si `config.js` existe.
 Sinon, il restera en mode simple sans partage live.
@@ -78,15 +79,16 @@ Option recommandee:
 
 ## Code d'acces
 
-Le code d'acces est defini dans `app.js`:
+Le code d'acces est defini dans `config.js`:
 
-- `ACCESS_CODE`
+- `accessCode`
 
-Ce n'est pas une vraie securite forte. C'est un filtre leger pour limiter le partage large.
+Si `accessCode` est vide, le sondage s'ouvre directement sans etape de deblocage.
+Sinon, c'est un filtre leger pour limiter le partage large.
 
 Si vous poussez ce projet sur GitHub:
 
-1. changez `ACCESS_CODE` avant publication si la valeur a deja ete partagee;
+1. changez `accessCode` avant publication si la valeur a deja ete partagee;
 2. gardez `config.js` hors du depot;
 3. n'utilisez jamais une cle `service_role` Supabase dans le front-end.
 

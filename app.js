@@ -1,6 +1,7 @@
-const ACCESS_CODE = "mai-ia-2026";
 const CONFIG = window.POLL_CONFIG || null;
 const HAS_LIVE_BACKEND = Boolean(CONFIG?.supabaseUrl && CONFIG?.supabaseAnonKey && CONFIG?.tableName);
+const ACCESS_CODE = typeof CONFIG?.accessCode === "string" ? CONFIG.accessCode.trim() : "";
+const REQUIRES_ACCESS_CODE = ACCESS_CODE.length > 0;
 
 const POLL_DATES = [
   { id: "date_2026_05_20", label: "Mercredi 20 mai 2026", window: "9 h 00 a 10 h 30" },
@@ -190,13 +191,18 @@ function showFormMessage(text, isError = false) {
 }
 
 function unlockPoll() {
-  sessionStorage.setItem("pollAccessGranted", "yes");
+  if (REQUIRES_ACCESS_CODE) sessionStorage.setItem("pollAccessGranted", "yes");
   document.querySelector("[data-gate]")?.classList.add("hidden");
   document.querySelector("[data-poll]")?.classList.remove("hidden");
   refreshLiveResults();
 }
 
 function initGate() {
+  if (!REQUIRES_ACCESS_CODE) {
+    unlockPoll();
+    return;
+  }
+
   if (sessionStorage.getItem("pollAccessGranted") === "yes") {
     unlockPoll();
     return;
